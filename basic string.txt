@@ -1,0 +1,700 @@
+import java.util.*;
+class Test{
+  public static boolean checkpalidrome(String str,int start,int end){
+    if(start >= end)return true;
+    while(start < end){
+      if(str.charAt(start)!=str.charAt(end))return false;
+      start++;
+      end--;
+    }
+    return true;
+  }
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    System.out.println("enter the string");
+    String s=sc.next();
+    boolean m=checkpalidrome(s,0,s.length()-1);
+    System.out.println(m);
+  }
+}
+import java.util.*;
+class Test{
+  public static void count(String str){
+    int vowel=0;
+    int consonant=0;
+    int spaces=0;
+    int special=0;
+    for(int i=0;i<str.length();i++){
+      if(str.charAt(i)=='a' || str.charAt(i)=='e' || str.charAt(i)=='i'  || str.charAt(i)=='o' || str.charAt(i)=='u' || str.charAt(i)=='A' || str.charAt(i)=='E' || str.charAt(i)=='I'  || str.charAt(i)=='O' || str.charAt(i)=='U')
+      {
+        vowel++;
+      }
+      else if(str.charAt(i)==' ')
+      {
+        spaces++;
+      }
+      else if((str.charAt(i)>='A' && str.charAt(i)<='Z')||(str.charAt(i)>='a' && str.charAt(i)<='z'))
+      {
+        consonant++;
+      }
+      else{
+        special++;
+      }
+      
+  }
+    System.out.println("vowels are:" + vowel);
+    System.out.println("consonant are:" + consonant);
+    System.out.println("spaces are:" + spaces);
+    System.out.println("special character are:" + special);
+  }
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    System.out.println("enter the string");
+    String s=sc.nextLine();
+    count(s);
+  }
+}
+import java.util.*;
+class Test{
+  public static int count(char[] ch){
+  
+   int count=0;
+    for(int i=0;i<ch.length;i++){
+      if(ch[i]!=' '){
+        ch[count++]=ch[i];
+      }
+      
+  }
+  return count;
+   
+  }
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    System.out.println("enter the string");
+    String s=sc.nextLine();
+    char[] ch=s.toCharArray();
+    int len=count(ch);
+    System.out.println(String.valueOf(ch).substring(0,len));
+
+  }
+}
+import java.util.*;
+class Test{
+  public static int count(char[] ch){
+  
+   int count=0;
+    for(int i=0;i<ch.length;i++){
+      if((ch[i]>='a' && ch[i]<='z') || (ch[i]>='A' && ch[i]<='Z')){
+        ch[count++]=ch[i];
+      }
+      
+  }
+  return count;
+   
+  }
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    System.out.println("enter the string");
+    String s=sc.nextLine();
+    char[] ch=s.toCharArray();
+    int len=count(ch);
+    System.out.println(String.valueOf(ch).substring(0,len));
+
+  }
+}
+import java.util.*;
+class Test{
+  public static int count(String str){
+  
+   int count=0;
+    for(int i=0;i<str.length();i++){
+      if(str.charAt(i)-'0'>=0 && str.charAt(i)-'0'<=9){
+       count+=str.charAt(i)-'0';
+      }
+      
+  }
+  return count;
+   
+  }
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    System.out.println("enter the string");
+    String s=sc.nextLine();
+   
+  System.out.println(count(s));
+   
+
+  }
+}
+import java.util.*;
+class Test{
+  public static String count(String str){
+  
+  String s="";
+    for(int i=0;i<str.length();i++){
+      if(i == 0 || i == str.length()-1 || str.charAt(i + 1) == ' ' || str.charAt(i-1)==' '){
+      s+=(char)(str.charAt(i) - 32);
+      }
+      else{
+        s+=str.charAt(i);
+      }
+      
+  }
+  return s;
+   
+  }
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    System.out.println("enter the string");
+    String s=sc.nextLine();
+   
+  System.out.println(count(s));
+   
+
+  }
+}
+
+import java.util.*;
+class Test{
+  public static void count(String str){
+  
+   HashMap<Character,Integer> hp=new HashMap<>();
+   for(int i=0;i<str.length();i++){
+    hp.put(str.charAt(i),hp.getOrDefault(str.charAt(i),0)+1);
+   }
+   for(Map.Entry<Character,Integer> entry:hp.entrySet()){
+    System.out.println(entry.getKey()+"---->" + entry.getValue());
+   }
+   
+  }
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    System.out.println("enter the string");
+    String s=sc.nextLine();
+   
+      count(s);
+   
+
+  }
+}
+import java.util.*;
+class Test{
+  public static void count(String str){
+  
+   int[] hash=new int[26];
+   for(int i=0;i<str.length();i++){
+    hash[str.charAt(i)-'a']++;
+   }
+   for(int i=0;i<26;i++){
+    if(hash[i]!=0){
+      System.out.println((char)(i + 'a') +"the frequency is" + hash[i]);
+    }
+   }
+   
+  }
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    System.out.println("enter the string");
+    String s=sc.nextLine();
+   
+      count(s);
+   
+
+  }
+}
+import java.util.*;
+class Test{
+  public static void count(String str){
+  
+   int[] hash=new int[26];
+   for(int i=0;i<str.length();i++){
+    hash[str.charAt(i)-'a']++;
+   }
+   for(int i=0;i<26;i++){
+    if(hash[i]==1){
+      System.out.println((char)(i + 'a') +"the frequency is" + "1");
+    }
+   }
+   
+  }
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    System.out.println("enter the string");
+    String s=sc.nextLine();
+   
+      count(s);
+   
+
+  }
+}
+import java.util.*;
+class Test{
+  public static boolean count(String str,String str1){
+  
+   int[] hash=new int[26];
+   for(int i=0;i<str.length();i++){
+    hash[str.charAt(i)-'a']++;
+   }
+   for(int i=0;i<str1.length();i++){
+   if(hash[str1.charAt(i)-'a'] > 0){
+    hash[str1.charAt(i)-'a']--;
+   }
+   else{
+    hash[str1.charAt(i)-'a']++;
+   }
+   }
+   for(int i=0;i<26;i++){
+    if(hash[i] > 0){
+      return false;
+    }
+   }
+   return true;
+   
+  }
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    System.out.println("enter the string");
+    String s=sc.nextLine();
+    System.out.println("enter the string");
+    String str=sc.nextLine();
+   
+      System.out.println(count(s,str));
+   
+
+  }
+}
+import java.util.*;
+class Test{
+  public static boolean count(String str,String str1){
+    if(str.length() > str1.length() || str.length() < str1.length())return false;
+  
+ HashMap<Character,Integer> hp=new HashMap<>();
+   for(int i=0;i<str.length();i++){
+   hp.put(str.charAt(i),hp.getOrDefault(str.charAt(i),0)+1);
+   }
+   for(int i=0;i<str1.length();i++){
+   if(hp.containsKey(str1.charAt(i))){
+    int count=hp.get(str1.charAt(i));
+    count--;
+    if(count == 0){
+      hp.remove(str1.charAt(i));
+    }
+    else{
+      hp.put(str1.charAt(i),count);
+    }
+   }
+   else{
+    return false;
+   }
+   }
+   return (hp.size()==0)?true:false;
+   }
+   
+   
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    System.out.println("enter the string");
+    String s=sc.nextLine();
+    System.out.println("enter the string");
+    String str=sc.nextLine();
+   
+      System.out.println(count(s,str));
+   
+
+  }
+}
+import java.util.*;
+class Test{
+  public static char count(String str){
+   int maxi=0;
+  char ch=' ';
+ HashMap<Character,Integer> hp=new HashMap<>();
+   for(int i=0;i<str.length();i++){
+   hp.put(str.charAt(i),hp.getOrDefault(str.charAt(i),0)+1);
+   }
+   for(Map.Entry<Character,Integer> entry:hp.entrySet()){
+    if(entry.getValue() > maxi){
+      maxi=entry.getValue();
+      ch=entry.getKey();
+    }
+   }
+   return ch;
+   }
+   
+   
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    System.out.println("enter the string");
+    String s=sc.nextLine();
+   
+      System.out.println(count(s));
+   
+
+  }
+}
+import java.util.*;
+
+class Test {
+  public static char count(String str) {
+    int maxi = 0;
+    char ch = ' ';
+    int[] hash = new int[26];
+    for (int i = 0; i < str.length(); i++) {
+      hash[str.charAt(i) - 'a']++;
+    }
+    for (int i = 0; i < 26; i++) {
+      if (hash[i] != 0 && hash[i] > maxi) {
+        maxi=hash[i];
+        ch=(char)(i + 'a');
+      }
+    }
+    return ch;
+  }
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("enter the string");
+    String s = sc.nextLine();
+
+    System.out.println(count(s));
+
+  }
+}
+import java.util.*;
+
+class Test {
+  public static void count(String str) {
+   
+    char ch = ' ';
+    String s="";
+    int[] hash = new int[26];
+    for (int i = 0; i < str.length(); i++) {
+      hash[str.charAt(i) - 'a']++;
+    }
+    for (int i = 0; i < 26; i++) {
+      if (hash[i] == 1) {
+       
+        ch=(char)(i + 'a');
+        s+=ch;
+      }
+    }
+   System.out.println(s);
+  }
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("enter the string");
+    String s = sc.nextLine();
+
+      count(s);
+
+  }
+}
+/*
+Given two strings string1 and string2, remove those characters from first string(string1) which are present in second string(string2). Both the strings are different and contain only lowercase characters.*/
+class Solution{
+    static String removeChars(String string1, String string2){
+        // code here
+       LinkedHashSet<Character> hash=new LinkedHashSet<>();
+        String str="";
+        for(int i=0;i<string2.length();i++){
+           hash.add(string2.charAt(i));
+        }
+        for(int i=0;i<string1.length();i++){
+            if(!hash.contains(string1.charAt(i)) ){
+                str+=string1.charAt(i);
+            }
+        }
+       
+        
+        return str;
+    }
+}
+import java.util.*;
+
+class Test {
+  public static void count(String str) {
+   
+    String s="";
+    for(int i=0;i<str.length();i++){
+      if(str.charAt(i)=='z' || str.charAt(i)=='Z'){
+        s+=(str.charAt(i)=='Z')?'A':'a';
+      }
+      else{
+        s+=(char)(str.charAt(i) + 1);
+      }
+    }
+   System.out.println(s);
+  }
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("enter the string");
+    String s = sc.nextLine();
+
+      count(s);
+
+  }
+}
+
+
+import java.util.*;
+
+class Test {
+  public static void count(String str) {
+   str=str.trim();
+   int maxi=0;
+   String s="";
+   int index=-1;
+
+   for(int i=0;i<str.length();i++){
+    if(str.charAt(i)==' '){
+      if(index == -1){
+        maxi=i;
+        s=str.substring(0, i);
+      }
+      else{
+        if(maxi < str.substring(index + 1,i).length()){
+          maxi=str.substring(index + 1,i).length();
+          s=str.substring(index + 1, i);
+        }
+      }
+      index=i;
+    }
+   }
+   if(index == -1){
+    s=str.substring(0, str.length());
+   }
+   else{
+    s=str.substring(index + 1, str.length());
+   }
+    System.out.println(s);
+  }
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("enter the string");
+    String s = sc.nextLine();
+
+      count(s);
+
+  }
+}
+import java.util.*;
+
+class Test {
+  public static void count(String str) {
+   str=str.trim();
+   int count=1;
+   
+
+   for(int i=0;i<str.length();i++){
+    if(str.charAt(i)==' '){
+      count++;
+    }
+   }
+   
+    System.out.println(count);
+  }
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("enter the string");
+    String s = sc.nextLine();
+
+      count(s);
+
+  }
+}
+import java.util.*;
+
+class Test {
+  public static String count(String s){
+    char[] ch=s.toCharArray();
+    for(int i=ch.length-1;i>=0;i--){
+      for(int j=0;j<i;j++){
+        if(ch[j] > ch[j+1]){
+          char m=ch[j];
+          ch[j]=ch[j+1];
+          ch[j+1]=m;
+        }
+      }
+    }
+   String ans=new String(ch);
+   return ans;
+  }
+  
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("enter the string");
+    String s = sc.nextLine();
+
+      System.out.println(count(s));
+
+  }
+}
+import java.util.*;
+
+class Test {
+  public static String count(String s){
+    char[] ch=s.toCharArray();
+    for(int i=1;i < ch.length;i++){
+     int j=i-1;
+     char m=ch[i];
+     while(j >=0 && m < ch[j]){
+      ch[j+1]=ch[j];
+      j--;
+     }
+     ch[j+1]=m;
+
+    }
+   String ans=new String(ch);
+   return ans;
+  }
+  
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("enter the string");
+    String s = sc.nextLine();
+
+      System.out.println(count(s));
+
+  }
+}
+import java.util.*;
+
+class Test {
+  static void merge(char[] ch,int start,int mid,int end){
+    int left=start;
+    int right=mid + 1;
+    ArrayList<Character> li=new ArrayList<>();
+    while(left <= mid && right <= end){
+      if(ch[left] <= ch[right]){
+        li.add(ch[left]);
+        left++;
+      }
+      else{
+        li.add(ch[right]);
+        right++;
+      }
+    }
+    while(left <= mid){
+      li.add(ch[left]);
+        left++;
+    }
+    while(right <= end){
+      li.add(ch[right]);
+        right++;
+    }
+    for(int i=start;i<=end;i++){
+     ch[i]=li.get(i-start);
+    }
+  }
+  static void mergesort(char[] ch,int start,int end){
+    while(start >= end)return;
+    int mid=start + (end - start)/2;
+    mergesort(ch,start,mid);
+    mergesort(ch,mid+1,end);
+    merge(ch,start,mid,end);
+  }
+  public static String count(String s){
+    char[] ch=s.toCharArray();
+    mergesort(ch,0,ch.length-1);
+   String ans=new String(ch);
+   return ans;
+  }
+  
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("enter the string");
+    String s = sc.nextLine();
+
+      System.out.println(count(s));
+
+  }
+}
+
+
+import java.util.*;
+
+class Test {
+  static int pivort(char[] ch,int start,int end){
+    int left=start;
+    int right=end;
+    char character=ch[start];
+   while(left < right){
+    while(left <= end -1 && ch[left] <= character){
+      left++;
+    }
+    while(right >= start +1 && ch[right] > character){
+      right--;
+    }
+    if(left < right){
+    char mk=ch[left];
+    ch[left]=ch[right];
+    ch[right]=mk;
+    }
+   }
+   char nk=ch[start];
+   ch[start]=ch[right];
+   ch[right]=nk;
+   return right;
+
+  }
+  static void quicksort(char[] ch,int start,int end){
+    while(start >= end)return;
+    int pivortindex=pivort(ch,start,end);
+    quicksort(ch,start,pivortindex-1);
+    quicksort(ch,pivortindex + 1,end);
+   
+  }
+  public static String count(String s){
+    char[] ch=s.toCharArray();
+    quicksort(ch,0,ch.length-1);
+   String ans=new String(ch);
+   return ans;
+  }
+  
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("enter the string");
+    String s = sc.nextLine();
+
+      System.out.println(count(s));
+
+  }
+}
+
+import java.util.*;
+class Test{
+  static int checkrepeat(String word){
+    HashMap<Character,Integer> hp=new HashMap<>();
+    int length=0;
+    for(int i=0;i<word.length();i++){
+      hp.put(word.charAt(i),hp.getOrDefault(word.charAt(i), 0)+1);
+    }
+    for(Map.Entry<Character,Integer> entry:hp.entrySet()){
+      if(entry.getValue() > 1)length+=entry.getValue();
+    }
+    return length;
+  }
+  static void largeststring(String input){
+    String[] words=input.split("\\s+");
+    int largestlength=0;
+    String str="";
+    for(String word:words){
+      int length=checkrepeat(word);
+      if(length > largestlength){
+        largestlength=length;
+        str=word;
+      }
+    }
+    System.out.println(str);
+  }
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    System.out.println("enter the string");
+    String input=sc.nextLine();
+    largeststring(input);
+  }
+}
