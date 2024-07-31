@@ -1,0 +1,397 @@
+Check if array is subset of another array.
+
+Write a program to find whether an array is a subset of another array or not.
+
+Given arr1[] and arr2[], we need to find whether arr1[] is a subset of arr2[]. An array is called a subset of another if all of its elements are present in the other array.
+
+Note: Array elements are assumed to be unique.
+
+
+import java.util.*;
+class Test{
+  static boolean checkarray(int[] arr1,int[] arr2){
+    int index=0;
+    for(int i=0;i<arr2.length;i++){
+     
+      if(index < arr1.length && arr2[i]==arr1[index]){
+        index++;
+      }
+    }
+    if(index == arr1.length)return true;
+    else return false;
+  }
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    System.out.println("enter the array elements of array1");
+    int[] arr1=new int[n];
+    for(int i=0;i<n;i++){
+      arr1[i]=sc.nextInt();
+    }
+    System.out.println("enter the no of elements of array2");
+    int m=sc.nextInt();
+    int[] arr2=new int[m];
+    System.out.println("enter the array elements of array1");
+    for(int i=0;i<m;i++){
+    arr2[i]=sc.nextInt();
+    }
+    if(n > m)System.out.println("not the subset");
+    
+      boolean check=checkarray(arr1,arr2);
+      if(check==true)
+      {
+        System.out.println("subset format");
+      }
+      else{
+        System.out.println("not the subset from");
+      }
+    
+  }
+}
+
+
+
+right rotation of array of k places
+class Solution {
+    public void rotate(int[] nums, int k) {
+        if(nums.length==1)return;
+        ArrayList<Integer> li=new ArrayList<>();
+        k=k%nums.length;
+        int n=nums.length;
+        for(int i=n-k;i<n;i++){
+            li.add(nums[i]);
+        }
+        for(int i=n-k-1;i>=0;i--){
+            nums[i+k]=nums[i];
+        }
+        for(int i=0;i<k;i++){
+            nums[i]=li.get(i);
+        }
+    }
+}
+
+left rotation of array k places
+
+
+class Solution {
+    // Function to rotate an array by d elements in counter-clockwise direction.
+    static void rotateArr(int arr[], int d, int n) {
+        // add your code here
+        d=d%n;
+        int[] arr1=new int[d];
+        for(int i=0;i<d;i++){
+            arr1[i]=arr[i];
+        }
+        for(int i=d;i<n;i++){
+            arr[i-d]=arr[i];
+        }
+        for(int i=0;i<d;i++){
+            arr[n-d+i]=arr1[i];
+        }
+    }
+}
+
+
+relative sort qs
+
+Given two arrays arr1 and arr2, the elements of arr2 are distinct, and all elements in arr2 are also in arr1.
+
+Sort the elements of arr1 such that the relative ordering of items in arr1 are the same as in arr2. Elements that do not appear in arr2 should be placed at the end of arr1 in ascending order.
+Input: arr1 = [2,3,1,3,2,4,6,7,9,2,19], arr2 = [2,1,4,3,9,6]
+Output: [2,2,2,1,4,3,3,9,6,7,19]
+
+class Solution {
+    public int[] relativeSortArray(int[] arr1, int[] arr2) {
+              Map<Integer, Integer> mp = new TreeMap<>();
+        for (int num : arr1) {
+            mp.put(num, mp.getOrDefault(num, 0) + 1);
+        }
+        
+        int index=0;
+        for (int num : arr2) {
+            if (mp.containsKey(num)) {
+                int count = mp.get(num);
+                while (count > 0) {
+                    arr1[index++]=num;
+                    count--;
+                }
+                mp.remove(num);
+            }
+        }
+        
+        for (Map.Entry<Integer, Integer> e : mp.entrySet()) {
+            int val = e.getValue();
+            while (val > 0) {
+                arr1[index++]=e.getKey();
+                val--;
+            }
+        }
+        
+       return arr1;
+    }
+}
+ 
+ Given an array arr[] of size n, return an equilibrium index (if any) or -1 if no equilibrium index exists. The equilibrium index of an array is an index such that the sum of elements at lower indexes equals the sum of elements at higher indexes.
+
+Note: Return equilibrium point in 1-based indexing. Return -1 if no such point exists. 
+
+Input: arr[] = {-7, 1, 5, 2, -4, 3, 0}
+Output: 4
+Explanation: In 1-based indexing, 4 is an equilibrium index, because: arr[1] + arr[2] + arr[3] = arr[5] + arr[6] + arr[7]
+brute force
+import java.util.*;
+class Test{
+
+  static int equilibiumindex(int[] arr){
+    for(int i=0;i<arr.length;i++){
+      int left=0;
+      for(int j=i-1;j>=0;j--){
+        left+=arr[j];
+      }
+      int right=0;
+      for(int k=i+1;k<arr.length;k++){
+        right+=arr[k];
+      }
+      if(left == right)return i;
+    }
+    return -1;
+  }
+
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    System.out.println("enter the array elements of array1");
+    int[] arr1=new int[n];
+    for(int i=0;i<n;i++){
+      arr1[i]=sc.nextInt();
+    }
+    int index=equilibiumindex(arr1);
+    if(index == -1)System.out.println("no such element");
+    else System.out.println(index + " it is that one");
+   
+  }
+}
+better
+
+import java.util.*;
+class Test{
+
+  
+
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    System.out.println("enter the array elements of array1");
+    int[] arr1=new int[n];
+    for(int i=0;i<n;i++){
+      arr1[i]=sc.nextInt();
+    }
+    int[] left=new int[n];
+    int[] right=new int[n];
+    left[0]=arr1[0];
+    right[n-1]=arr1[n-1];
+    for(int i=1;i<n;i++){
+      left[i]=left[i-1] + arr1[i];
+      right[n-i-1]=right[n-i] + arr1[n-i-1];
+    }
+    int index=-1;
+    for(int i=0;i<n;i++){
+      if(left[i] == right[i]){
+        index=i;
+        break;
+      }
+    }
+    if(index == -1)System.out.println("no such element");
+    else System.out.println(index + " it is that one");
+   
+  }
+}
+
+Sort Elements of an Array by Frequency
+
+Problem Statement: Given an array of integers, having some duplicate elements, sort the array by frequency.
+
+Examples:
+
+Example 1:
+Input: N = 8, array[] = {1,2,3,2,4,3,1,2}
+Output: 2 2 2 1 1 3 3 4 
+Explanation: Since  2 is present 3 times in an array , so print it 3 times ,then print ‘1’ 2 times and then ‘3’ 2 times and 4 has least frequency, it will be printed at last.
+
+Example 2:
+Input: N = 6, array[] = {-199,6,7,-199,3,5}
+Output: -199 -199 3 5 6 7
+Explanation: Since -199 is present 2 times so it will be printed at first , then 3 , 5 ,6 ,7 are present once in array , so print them in their sorted order.
+
+class pair implements Comparable <pair>{
+    int ele;
+    int freq;
+    pair(int ele,int freq){
+        this.ele=ele;
+        this.freq=freq;
+    }
+    public int compareTo(pair other){
+       if(this.freq == other.freq){
+        return Integer.compare(this.ele,other.ele);
+       }
+       else{
+        return Integer.compare(this.freq,other.freq);
+       }
+    }
+}
+class Solution {
+    public int[] frequencySort(int[] nums) {
+       HashMap<Integer,Integer> hp=new HashMap<>();
+       for(int i=0;i<nums.length;i++){
+        hp.put(nums[i],hp.getOrDefault(nums[i],0)+1);
+       } 
+  PriorityQueue<pair> pq=new PriorityQueue<>();
+  for(Map.Entry<Integer,Integer> entry:hp.entrySet()){
+    pq.add(new pair(entry.getKey(),entry.getValue()));
+  }
+  int[] res=new int[nums.length];
+  int index=0;
+  while(!pq.isEmpty()){
+    pair p=pq.remove();
+    int ele=p.ele;
+    int count=p.freq;
+    while(count > 0){
+        res[index++]=ele;
+        count--;
+    }
+  }
+  return res;
+    }
+}
+https://leetcode.com/problems/rank-transform-of-an-array/
+class Solution {
+    public int[] arrayRankTransform(int[] arr) {
+        int n=arr.length;
+        int[] brr=new int[n];
+        for(int i=0;i<n;i++){
+            brr[i]=arr[i];
+        }
+        Arrays.sort(brr);
+        HashMap<Integer,Integer> hp=new HashMap<>();
+        int temp=1;
+        for(int i=0;i<n;i++){
+            if(hp.get(brr[i])==null){
+                hp.put(brr[i],temp);
+                temp++;
+            }
+        }
+        int index=0;
+        for(int i=0;i<n;i++){
+            brr[index++]=hp.get(arr[i]);
+        }
+        return brr;
+    }
+}
+maximum product subarray
+
+ class Solution {
+    public int maxProduct(int[] nums) {
+        int maxi=Integer.MIN_VALUE;
+        int n=nums.length;
+        int index=0;
+        if(n==1)return nums[0];
+        int pre=1,suff=1;
+        for(int i=0;i<n;i++){
+            if(pre==0)pre=1;
+            if(suff==0)suff=1;
+            pre=pre*nums[i];
+            suff=suff*nums[n-i-1];
+            maxi=Math.max(maxi,Math.max(pre,suff));
+        }
+        return maxi;
+    
+}
+}
+
+import java.util.*;
+class Test{
+
+  static void checkduplicates(int[] arr){
+    HashSet<Integer> hp=new HashSet<>();
+    for(int i=0;i<arr.length;i++){
+      boolean check=false;
+      for(int j=0;j<arr.length;j++){
+        if(arr[i] == arr[j] && i!=j){
+          check=true;
+        }
+      }
+      if(check == true){
+       hp.add(arr[i]);
+      }
+    }
+    for(int it:hp)System.out.println(it);
+  }
+  
+
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    System.out.println("enter the array elements of array1");
+    int[] arr1=new int[n];
+    for(int i=0;i<n;i++){
+      arr1[i]=sc.nextInt();
+    }
+    checkduplicates(arr1);
+}
+}
+
+better
+import java.util.*;
+class Test{
+
+  static void checkduplicates(int[] arr){
+    HashMap<Integer,Integer> hp=new HashMap<>();
+    for(int i=0;i<arr.length;i++){
+     hp.put(arr[i],hp.getOrDefault(arr[i],0)+1);
+    }
+    for(Map.Entry<Integer,Integer> entry:hp.entrySet()){
+      if(entry.getValue() > 1)System.out.println(entry.getKey());
+    }
+  }
+  
+
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    System.out.println("enter the array elements of array1");
+    int[] arr1=new int[n];
+    for(int i=0;i<n;i++){
+      arr1[i]=sc.nextInt();
+    }
+    checkduplicates(arr1);
+}
+}
+
+
+import java.util.*;
+class Test{
+
+  static void checknoduplicates(int[] arr){
+    HashMap<Integer,Integer> hp=new HashMap<>();
+    for(int i=0;i<arr.length;i++){
+     hp.put(arr[i],hp.getOrDefault(arr[i],0)+1);
+    }
+    for(Map.Entry<Integer,Integer> entry:hp.entrySet()){
+      if(entry.getValue() == 1)System.out.println(entry.getKey());
+    }
+  }
+  
+
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    System.out.println("enter the array elements of array1");
+    int[] arr1=new int[n];
+    for(int i=0;i<n;i++){
+      arr1[i]=sc.nextInt();
+    }
+    checknoduplicates(arr1);
+}
+}
+
+    
