@@ -1,1 +1,1 @@
-this file contains all the string realated code for tcs nqt sheet of striver in java 
+this file contains maximum number of the string & arrays  realated code for tcs nqt sheet of striver in java 
